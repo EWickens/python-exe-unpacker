@@ -95,6 +95,7 @@ import sys
 import imp
 import types
 from uuid import uuid4 as uniquename
+import subprocess
 
 
 class CTOCEntry:
@@ -278,6 +279,13 @@ class PyInstArchive:
                 with open(each.name + '.pyc', 'wb') as f:
                     f.write(mypycheader)
                     f.write(data)
+
+                try:
+                    subprocess.run(["uncompyle6", each.name + ".pyc", ">", each.name + ".py"], stderr=subprocess.DEVNULL)
+                except ImportError:
+                    print("********Uncompyle6 isn't installed - attempting to install using subprocess********")
+                    subprocess.run(['pip', 'install', 'uncompyle6'])
+
 
     def _extractPyz(self, name):
         dirName = name + '_extracted'
