@@ -281,7 +281,7 @@ class PyInstArchive:
                     f.write(data)
 
                 try:
-                    subprocess.run(["uncompyle6", each.name + ".pyc", ">", each.name + ".py"], stderr=subprocess.DEVNULL)
+                    subprocess.run(["uncompyle6", each.name + ".pyc", ">", each.name + ".py"], stderr=subprocess.DEVNULL, shell=True)
                 except ImportError:
                     print("********Uncompyle6 isn't installed - attempting to install using subprocess********")
                     subprocess.run(['pip', 'install', 'uncompyle6'])
