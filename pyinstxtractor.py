@@ -377,7 +377,7 @@ def main():
                     arch.close()
                     print('[*] Successfully extracted pyinstaller archive: {0}'.format(sys.argv[1]))
                     print('')
-                    print('You can now use a python decompiler on the pyc files within the extracted directory')
+                    print('Your decompiled python source code is now available')
                     return
 
             arch.close()
